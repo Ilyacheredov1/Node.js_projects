@@ -1,4 +1,8 @@
-const fs = require('fs')
+"use strict";
+
+const fs = require('fs');
+const chalk = require('chalk')
+
 
 const getNotes = function () {
     return 'Your notes...'
@@ -6,15 +10,20 @@ const getNotes = function () {
 
 const addNote = function (title, body) {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(note => note.title === title);
+    const duplicateNote = notes.find(it => it.title === title);
 
-    if (duplicateNotes.length === 0) {
+    debugger
+
+    if (!duplicateNote) {
         notes.push({ title, body });
         saveNotes(notes)
         console.log('New note added!')
     } else {
         console.log('Note title taken!')
     }
+
+    debugger
+
 }
 
 const saveNotes = function (notes) {
@@ -42,8 +51,27 @@ const removeNote = async function (title) {
     }
 }
 
+const listNotes = () => {
+    const notes = loadNotes();
+    console.log(chalk.inverse('Your notes'));
+    notes.forEach(it => console.log(it))
+}
+
+const readNote = (title) => {
+    const notes = loadNotes();
+    const selectedNote = notes.find(it => it.title === title);
+
+    if (selectedNote) {
+        console.log(selectedNote.body);
+    } else {
+        console.log('no such notes')
+    }
+}
+
 module.exports = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    listNotes,
+    readNote,
 }
