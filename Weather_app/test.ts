@@ -4,4 +4,5 @@ function merge<T, U>(objA: T, objB: U) {
 
 const mergedObj = merge(30, 30)
 
+
 console.log(mergedObj);
