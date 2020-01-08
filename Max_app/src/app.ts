@@ -6,7 +6,7 @@ import todoRoutes from './routes/todosRoutes';
 
 const app = express();
 
-app.use(json())
+app.use(json());
 
 app.use('/todos', todoRoutes);
 
