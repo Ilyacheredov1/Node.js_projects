@@ -12,8 +12,6 @@ const addNote = function (title, body) {
     const notes = loadNotes()
     const duplicateNote = notes.find(it => it.title === title);
 
-    debugger
-
     if (!duplicateNote) {
         notes.push({ title, body });
         saveNotes(notes)
@@ -21,8 +19,6 @@ const addNote = function (title, body) {
     } else {
         console.log('Note title taken!')
     }
-
-    debugger
 
 }
 
